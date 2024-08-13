@@ -1,2 +1,2 @@
 // Create a database
-show dbs;
+use my_db;
