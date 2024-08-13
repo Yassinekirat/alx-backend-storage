@@ -1,1 +1,2 @@
-#!/usr/bin/env bash
+// Lists all MongoDB databases.
+show dbs;
