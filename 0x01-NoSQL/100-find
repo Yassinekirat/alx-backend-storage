@@ -1,2 +1,2 @@
 // All documents
-db.school.find({name: "Holberton "}).toArray()
+db.school.find({ name: { $regex: /^Holberton/ } }).toArray()
