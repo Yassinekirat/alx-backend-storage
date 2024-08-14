@@ -3,19 +3,20 @@
 import redis
 import uuid
 from typing import Union
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Any
 import functools
 import redis
 
 
 def count_calls(method: Callable) -> Callable:
-    """Decorator to count the number of times a method is called"""
+    """ Decorator for Cache class methods to track call count
+    """
     @functools.wraps(method)
-    def wrapper(self, *args, **kwargs):
-        key = f"{self.__class__.__qualname__}.{method.__qualname__}"
-        self._redis.incr(key)
+    def wrapper(self: Any, *args, **kwargs) -> str:
+        """ Wraps called method and adds its call count redis before execution
+        """
+        self._redis.incr(method.__qualname__)
         return method(self, *args, **kwargs)
-
     return wrapper
 
 
